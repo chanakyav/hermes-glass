@@ -46,16 +46,42 @@ evenhub-simulator http://localhost:5173 --automation-port 9898
 
 ## Real device workflow
 
-1. Enable Developer Mode on [hub.evenrealities.com](https://hub.evenrealities.com/login)
-2. Force-quit and reopen the Even Realities app
-3. Start dev server: `npm run dev`
-4. Generate QR:
+### Enable Even Hub Developer Mode (required for QR sideload)
+
+This is **not** a toggle inside the Even app, and it is **not** the same as [iPhone Developer Mode](#iphone-developer-mode-ios-16) in iOS Settings.
+
+Per [official docs](https://hub.evenrealities.com/docs/get-started/quickstart/hardware#enable-developer-mode):
+
+1. **Same account everywhere.** Register in the Even Realities phone app, then sign in at **[hub.evenrealities.com/login](https://hub.evenrealities.com/login)** with that **exact same account**.
+2. **Force-quit the Even Realities app** on your iPhone (swipe it away from the app switcher — do not just background it).
+3. **Reopen the app.**
+4. Open the **Even Hub** tab (bottom navigation).
+5. A **developer section** should appear in the **top-right** of the Even Hub tab. Tap **Scan QR** there.
+
+If you do not see the Even Hub tab or the developer section / Scan QR button:
+
+| Check            | Action                                                                                  |
+| ---------------- | --------------------------------------------------------------------------------------- |
+| Web login        | Confirm you signed in at hub.evenrealities.com with the **same email** as the phone app |
+| App restart      | Force-quit and reopen — a normal background does not count                              |
+| Account mismatch | Log out of the phone app, log back in with the hub account                              |
+| App version      | Update the Even Realities app from the App Store                                        |
+| Region / preview | Some builds label tabs differently; look for **Even Hub** or plugin-related navigation  |
+
+### Sideload the dev app
+
+1. Start dev server: `npm run dev`
+2. Generate QR:
 
 ```bash
 npx evenhub qr --url http://<your-laptop-ip>:5173
 ```
 
-5. Scan QR in the app; ensure phone and laptop are on the same network (watch firewall / AP isolation)
+3. In the Even app: **Even Hub tab → Scan QR** (top-right developer section).
+4. Point the camera at the terminal QR code.
+5. Ensure phone and laptop are on the same network (watch firewall / AP isolation).
+
+**Quick connectivity test:** open `http://<your-laptop-ip>:5173` in **Safari on your iPhone**. If that fails, fix network/firewall before scanning the QR.
 
 ## iPhone Developer Mode (iOS 16+)
 
