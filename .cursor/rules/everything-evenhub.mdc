@@ -1,0 +1,47 @@
+---
+description: Map official Even Realities everything-evenhub skills to Cursor workflows
+alwaysApply: false
+---
+
+# everything-evenhub skills (Cursor adaptation)
+
+Even Realities ships an official AI skill set for G2 development: [everything-evenhub](https://github.com/even-realities/everything-evenhub). It targets Claude Code and Codex CLI plugins ([docs](https://hub.evenrealities.com/docs/AI-tooling/claude-code)). **Cursor cannot install Claude plugins directly**, but agents should consult the upstream skill files when relevant.
+
+## Upstream skill location
+
+```
+https://github.com/even-realities/everything-evenhub/tree/main/plugins/everything-evenhub/skills/<skill-name>/SKILL.md
+```
+
+Fetch or read the matching `SKILL.md` before implementing the topic below. Do not guess SDK behavior when a skill exists.
+
+## Skill → task mapping
+
+| Task | Consult skill |
+|------|----------------|
+| Scaffold blank app | `quickstart` |
+| Scaffold from template | `template` |
+| Package / publish `.ehpk` | `build-and-deploy`, `cli-reference` |
+| G2 display / containers | `glasses-ui`, `design-guidelines` |
+| Touchpad + R1 input | `handle-input` |
+| Audio, IMU, device info | `device-features` |
+| Background state persistence | `background-state` |
+| Simulator workflow | `test-with-simulator` |
+| Simulator HTTP automation | `simulator-automation` |
+| Text measurement / pagination | `font-measurement` |
+| SDK API lookup | `sdk-reference` |
+
+## This repo vs upstream skills
+
+- This project already implements patterns from `minimal` template + `handle-input` event routing.
+- Prefer **installed SDK types** (`node_modules/@evenrealities/even_hub_sdk/dist/index.d.ts`) over skill prose when they conflict.
+- Hermes HTTP integration is **not** covered by everything-evenhub; follow `AGENTS.md` roadmap and `docs/security.md`.
+
+## Optional: install upstream for Claude Code users
+
+```bash
+/plugin marketplace add even-realities/everything-evenhub
+/plugin install everything-evenhub
+```
+
+Cursor users rely on this rule + `docs/ai-tooling.md` instead.

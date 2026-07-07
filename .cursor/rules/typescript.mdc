@@ -1,0 +1,15 @@
+---
+description: TypeScript conventions for hermes-glass
+globs: "**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# TypeScript
+
+- `strict: true` in `tsconfig.json` — do not weaken.
+- No casual `any`; use explicit types at SDK/hardware boundaries.
+- Exhaustive `switch` on domain event unions in `src/app/` and `src/even/`.
+- Small modules; one responsibility per file.
+- Prefer plain functions over premature abstraction.
+- Handle errors at integration boundaries; surface messages to the debug UI.
+- Match existing import style: `.ts` extensions in relative imports.

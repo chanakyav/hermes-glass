@@ -1,0 +1,38 @@
+---
+description: Even Hub SDK integration, G2 rendering, G2/R1 events, lifecycle, simulator
+globs: src/even/**
+alwaysApply: false
+---
+
+# Even Hub SDK
+
+Before changing files in `src/even/`:
+
+1. Consult official Even Hub documentation.
+2. Inspect `node_modules/@evenrealities/even_hub_sdk/dist/index.d.ts` for the pinned version.
+3. Never guess method names, event types, or payload shapes.
+
+## Boundaries
+
+- All `@evenrealities/even_hub_sdk` imports stay in `src/even/`.
+- `src/app/` and `src/ui/` must not import the SDK.
+- Future Hermes HTTP code goes in `src/hermes/`, not here.
+
+## Event routing (verified)
+
+- Taps, double-taps, lifecycle → `event.sysEvent`
+- Scroll up/down → `event.textEvent`
+- R1 vs G2 → `sysEvent.eventSource` (`EventSourceType`)
+- Coalesce zero: `event.sysEvent?.eventType ?? 0`
+- Double-tap → `shutDownPageContainer(1)` in both envelopes
+- Cleanup on `SYSTEM_EXIT_EVENT` / `ABNORMAL_EXIT_EVENT`
+
+## Conflicts
+
+If docs and installed types disagree, note the conflict in code comments or PR description before changing behavior.
+
+## Sources
+
+- https://hub.evenrealities.com/docs
+- https://github.com/even-realities/evenhub-templates
+- https://github.com/even-realities/everything-evenhub (consult `handle-input`, `glasses-ui`, `sdk-reference` skills when relevant — see `docs/ai-tooling.md`)

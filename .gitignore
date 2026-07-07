@@ -1,0 +1,35 @@
+node_modules/
+dist/
+.DS_Store
+*.local
+
+# Secrets and credentials — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa
+id_ed25519
+credentials.json
+secrets.json
+*.p12
+*.pfx
+
+# Tailscale / cloud
+tailscale-authkey*
+.aws/
+.terraform/
+
+# Editor / OS
+.idea/
+.vscode/settings.json
+*.swp
+*.swo
+
+# Logs that may contain tokens
+*.log
+npm-debug.log*
+
+# Packaged apps (build artifacts; regenerate with npm run pack)
+*.ehpk
