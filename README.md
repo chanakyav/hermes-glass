@@ -59,7 +59,9 @@ npm run dev
 npx evenhub qr --url http://<your-ip>:5173
 ```
 
-Scan the QR in the Even Realities app (Developer Mode required).
+Scan the QR in the Even Realities app (Even Hub Developer Mode required).
+
+**iPhone (iOS 16+):** If **Settings → Privacy & Security → Developer Mode** is missing, see [docs/development.md#iphone-developer-mode-ios-16](docs/development.md#iphone-developer-mode-ios-16) for Xcode steps.
 
 ## Scripts
 
@@ -89,7 +91,7 @@ AGENTS.md       # AI agent guidance
 ## Documentation
 
 - [Architecture](docs/architecture.md)
-- [Development](docs/development.md)
+- [Development](docs/development.md) (includes [iPhone Developer Mode](docs/development.md#iphone-developer-mode-ios-16))
 - [Capabilities matrix](docs/capabilities.md)
 - [AI tooling (Cursor + everything-evenhub)](docs/ai-tooling.md)
 - [Security (public repo)](docs/security.md)
